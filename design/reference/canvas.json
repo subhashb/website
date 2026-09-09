@@ -1,0 +1,8 @@
+{
+  "artboards": [
+    { "file": "Main.dc.html", "x": 0, "y": 0, "w": 704, "h": 2120, "title": "Full page (light)" },
+    { "file": "HeroLight.dc.html", "x": 800, "y": 0, "w": 880, "h": 560, "title": "Hero (light)" },
+    { "file": "HeroDark.dc.html", "x": 800, "y": 640, "w": 880, "h": 560, "title": "Hero (dark)" }
+  ],
+  "launch": { "view": "canvas" }
+}

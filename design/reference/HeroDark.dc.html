@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+  <style>
+    :root {
+      --paper: #100f0d;
+      --ink: #ece7dd;
+      --muted: #8f887d;
+      --accent: {{accent}};
+      --sans: "Geist", ui-sans-serif, system-ui, sans-serif;
+      --serif: "Instrument Serif", Georgia, "Times New Roman", serif;
+      --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+    }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; text-underline-offset: 3px; }
+    .wrap { max-width: 640px; margin: 0 auto; padding: 96px 32px; }
+    .eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+    .claim { font-family: var(--serif); font-weight: 400; font-size: 56px; line-height: 1.06; letter-spacing: -0.005em; margin: 26px 0 0; }
+    .subhead { font-size: 19px; line-height: 1.55; color: var(--muted); margin: 30px 0 0; max-width: 33em; }
+    .cta { display: inline-block; margin-top: 30px; color: var(--ink); border-bottom: 2px solid var(--accent); padding-bottom: 2px; font-weight: 500; }
+  </style>
+</helmet>
+<div class="wrap">
+  <div class="eyebrow">Subhash Bhushan</div>
+  <h1 class="claim">I design and build ambitious systems: large, complex software meant to grow, now built AI-natively on deep architecture and data foundations.</h1>
+  <p class="subhead">Architecture and domain-modeling depth, AI-native building at production speed, and the discipline to ship. I build Protean, the open-source framework that encodes how.</p>
+  <a class="cta" href="#work">See the work</a>
+</div>
+</x-dc>
+<script data-dc-script data-props='{"accent":{"editor":"color","default":"#e0764a","section":"Theme"}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { accent: this.props.accent ?? '#e0764a' };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,18 +1,16 @@
 @import "tailwindcss";
 
-/*
-  Placeholder design tokens. The Claude Design package (design/) becomes the
-  visual source of truth and replaces these values.
-*/
+/* Design tokens. Mirrored from design/tokens.css (the design package is the source of truth). */
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: ui-monospace, "SF Mono", Menlo, monospace;
+  --font-sans: "Geist Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
+  --font-mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
 
-  --color-paper: #f7f5f0;
-  --color-ink: #17140f;
-  --color-muted: #6b655c;
-  --color-accent: #b8431e;
-  --color-line: #e4dfd6;
+  --color-paper: #f6f3ec;
+  --color-ink: #1c1813;
+  --color-muted: #6f685c;
+  --color-line: #e3ddd0;
+  --color-accent: #b0451f;
 }
 
 /* Dark theme: override the same tokens under the system preference. */
@@ -21,8 +19,8 @@
     --color-paper: #100f0d;
     --color-ink: #ece7dd;
     --color-muted: #8f887d;
-    --color-accent: #e8703f;
     --color-line: #2a2621;
+    --color-accent: #e0764a;
   }
 }
 
