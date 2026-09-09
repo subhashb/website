@@ -1,0 +1,126 @@
+---
+import Base from '../layouts/Base.astro';
+
+const work = [
+  {
+    title: 'Protean',
+    body: 'An open-source Python framework for domain-driven systems. A 100,000-line, 41-aggregate application runs on it in production.',
+    href: 'https://proteanhq.com',
+    label: 'proteanhq.com',
+  },
+  {
+    title: 'An autonomous coding loop',
+    body: 'An AI system that builds and ships software to production behind quality gates.',
+    href: null,
+    label: null,
+  },
+  {
+    title: 'Enterprise data and modernization at scale',
+    body: 'Data-platform and architecture modernization for a global sustainability consultancy.',
+    href: null,
+    label: null,
+  },
+  {
+    title: 'Twenty-three years of building',
+    body: 'Core banking from the ground up (RBI RTGS), corporate banking (FLEXCUBE), a neighbourhood-library chain grown from one store to 63 (JustBooks, co-founded), Director of Engineering through an acquisition (Kaybus), and Team8 Solutions, which I co-founded and where I am CTO.',
+    href: null,
+    label: null,
+  },
+];
+
+const elsewhere = [
+  { label: 'Protean', href: 'https://proteanhq.com' },
+  { label: 'Ambitious Systems', href: 'https://ambitious.systems' },
+  { label: 'GitHub', href: 'https://github.com/subhashb' },
+  { label: 'LinkedIn', href: 'https://linkedin.com/in/subhashbhushan' },
+];
+---
+
+<Base title="Subhash Bhushan">
+  <main class="mx-auto max-w-2xl px-6 py-24 md:py-32">
+    <section>
+      <p class="font-mono text-sm uppercase tracking-widest text-muted">Subhash Bhushan</p>
+      <h1 class="mt-6 text-4xl font-semibold leading-tight tracking-tight md:text-5xl">
+        I design and build ambitious systems: large, complex software meant to grow,
+        now built AI-natively on deep architecture and data foundations.
+      </h1>
+      <p class="mt-8 text-lg leading-relaxed text-muted">
+        Architecture and domain-modeling depth, AI-native building at production speed,
+        and the discipline to ship. I build Protean, the open-source framework that
+        encodes how.
+      </p>
+      <p class="mt-8">
+        <a href="#work" class="border-b-2 border-accent pb-0.5 font-medium">See the work</a>
+      </p>
+    </section>
+
+    <section id="work" class="mt-24">
+      <h2 class="font-mono text-sm uppercase tracking-widest text-muted">Selected work</h2>
+      <ul class="mt-8 space-y-10">
+        {
+          work.map((item) => (
+            <li>
+              <h3 class="text-xl font-semibold">{item.title}</h3>
+              <p class="mt-2 leading-relaxed text-muted">{item.body}</p>
+              {item.href && (
+                <a href={item.href} class="mt-2 inline-block font-mono text-sm text-accent">
+                  {item.label} &rarr;
+                </a>
+              )}
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section class="mt-24">
+      <h2 class="font-mono text-sm uppercase tracking-widest text-muted">Writing</h2>
+      <p class="mt-8 leading-relaxed text-muted">
+        The way serious software gets built is changing. When a machine writes most of
+        the code, the scarce input is judgment: what to build, how to model the domain,
+        and how to keep a large system correct as it grows. I write about how large
+        systems stay correct when AI writes the code, and about the architecture and
+        data foundations that make AI useful.
+      </p>
+      <p class="mt-6">
+        <a href="https://ambitious.systems" class="border-b-2 border-accent pb-0.5 font-medium">
+          Ambitious Systems
+        </a>
+      </p>
+    </section>
+
+    <section class="mt-24">
+      <h2 class="font-mono text-sm uppercase tracking-widest text-muted">About</h2>
+      <p class="mt-8 leading-relaxed">
+        I build software and the teams that run it, and I have done it for twenty-three
+        years, from core banking to the platforms I run today. I co-founded Team8
+        Solutions and I am its CTO. I build in the open with Protean, and I run an
+        autonomous system that ships to production behind quality gates. I am based near
+        Vancouver.
+      </p>
+    </section>
+
+    <section class="mt-24">
+      <h2 class="font-mono text-sm uppercase tracking-widest text-muted">Elsewhere</h2>
+      <ul class="mt-8 flex flex-wrap gap-x-6 gap-y-2 font-mono text-sm">
+        {
+          elsewhere.map((item) => (
+            <li>
+              <a href={item.href} class="text-accent">
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="mt-6 font-mono text-sm">
+        <a href="mailto:subhash.bhushan@gmail.com" class="text-accent">subhash.bhushan@gmail.com</a>
+      </p>
+    </section>
+
+    <footer class="mt-24 border-t border-line pt-6 font-mono text-xs text-muted">
+      Built AI-natively with Astro. Source at
+      <a href="https://github.com/subhashb/website" class="text-accent">github.com/subhashb/website</a>.
+    </footer>
+  </main>
+</Base>
