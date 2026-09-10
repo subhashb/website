@@ -1,0 +1,13 @@
+{
+  "artboards": [
+    { "file": "Main.dc.html", "x": 0, "y": 0, "w": 800, "h": 2180, "title": "Option A: Editorial" },
+    { "file": "Panels.dc.html", "x": 880, "y": 0, "w": 980, "h": 1520, "title": "Option B: Panels" },
+    { "file": "System.dc.html", "x": 1940, "y": 0, "w": 772, "h": 1960, "title": "Option C: System" }
+  ],
+  "annotations": [
+    { "id": "note-a", "x": 0, "y": -150, "w": 320, "text": "Option A. Editorial. A masthead, a proof-stat strip, and a numbered work index; each aspect carries weight and a kind tag. The calmest of the three, reading as a writer-architect." },
+    { "id": "note-b", "x": 880, "y": -150, "w": 340, "text": "Option B. Panels. A modular grid where every aspect is its own bordered panel: Protean with the live runner, a metric, a compact timeline. The most structured; kept restrained so it stays a hub, not a dashboard." },
+    { "id": "note-c", "x": 1940, "y": -150, "w": 320, "text": "Option C. System. Dark and mono-forward, a builder's console, with the Protean runner front and centre. The strongest aesthetic commitment, most on-theme for AI-native, least warm." }
+  ],
+  "launch": { "view": "canvas" }
+}

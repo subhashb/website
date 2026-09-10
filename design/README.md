@@ -2,17 +2,19 @@
 
 The visual source of truth for subhashb.com. The site's tokens and components implement what these artboards specify.
 
-## The canvas
+## The canvases
 
-The design canvas has three artboards: the full page (light), and the hero in light and dark. It is published and editable in Claude Design:
+Two design canvases are published and editable in Claude Design (open in the desktop app to refine):
 
-https://claude.ai/code/artifact/63e84fe7-7fb3-4437-90ec-19a1ef988735
+- v1, the first cut (full page, hero light, hero dark): https://claude.ai/code/artifact/63e84fe7-7fb3-4437-90ec-19a1ef988735
+- Three directions to choose from (Editorial, Panels, System): https://claude.ai/code/artifact/a8e2ef12-7623-4a32-baa9-85f86944a137
 
-Open that link in the Claude Design desktop app to refine it. Exporting or re-seeding from the desktop app writes back to `reference/` here.
+Editing or re-seeding from the desktop app writes back to `reference/` and `directions/` here.
 
 ## Source
 
-- `reference/` the artboard masters (`.dc.html`) and the `canvas.json` layout, the input to the canvas.
+- `reference/` the v1 artboard masters (`.dc.html`) and its `canvas.json`.
+- `directions/` the three exploration directions (`Main.dc.html` is Option A Editorial, plus `Panels.dc.html` and `System.dc.html`) and their `canvas.json`.
 - `tokens.css` the design tokens (type and palette) the site binds to in `src/styles/global.css`.
 
 ## The system
