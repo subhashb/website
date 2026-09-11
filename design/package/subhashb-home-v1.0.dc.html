@@ -18,7 +18,7 @@ body{margin:0;}
 ::selection{background:var(--accent);color:#fff;}
 a{color:var(--accent);text-decoration:none;}
 a:hover{text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1.5px;}
-[data-theme="dark"]{--paper:#1a1610!important;--panel:#262019!important;--ink:#efe9df!important;--muted:#a79f90!important;--hairline:#3a342b!important;--accent:#e0764a!important;--accent-fill:#c86339!important;--syn-kw:#e0764a!important;--syn-type:#d6a24e!important;--syn-dec:#e0764a!important;--syn-str:#9db974!important;--syn-num:#d6a24e!important;}
+[data-theme="dark"]{--paper:#100f0d!important;--panel:#17140f!important;--ink:#ece7dd!important;--muted:#8b8478!important;--hairline:#2b2823!important;--accent:#e0764a!important;--syn-kw:#e0764a!important;--syn-type:#d6a24e!important;--syn-dec:#e0764a!important;--syn-str:#9db974!important;--syn-num:#d6a24e!important;}
 [data-seg]{display:none;}
 [data-theme="light"] [data-seg="light"]{display:inline-flex;}
 [data-theme="dark"] [data-seg="dark"]{display:inline-flex;}
@@ -28,14 +28,13 @@ a:hover{text-decoration:underline;text-underline-offset:3px;text-decoration-thic
 @keyframes om-pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
 </style>
 </helmet>
-<div data-theme="{{ theme }}" style="--paper:#f6f3ec;--panel:#fbf9f3;--ink:#1c1813;--muted:#6f685c;--hairline:#e3ddd0;--accent:#b0451f;--accent-fill:#b0451f;--syn-kw:#b0451f;--syn-type:#8a5a00;--syn-dec:#a24a2c;--syn-str:#4f6b2f;--syn-num:#9a5b1e;background:var(--paper);color:var(--ink);min-height:100vh;font-family:'Archivo',system-ui,sans-serif;-webkit-font-smoothing:antialiased;">
+<div data-theme="{{ theme }}" style="--paper:#f6f3ec;--panel:#fbf9f3;--ink:#1c1813;--muted:#6f685c;--hairline:#e3ddd0;--accent:#b0451f;--syn-kw:#b0451f;--syn-type:#8a5a00;--syn-dec:#a24a2c;--syn-str:#4f6b2f;--syn-num:#9a5b1e;background:var(--paper);color:var(--ink);min-height:100vh;font-family:'Archivo',system-ui,sans-serif;-webkit-font-smoothing:antialiased;">
  <div style="max-width:1120px;margin:0 auto;padding:clamp(1.25rem,4vw,2.5rem);">
 
   <main>
 
    <section style="position:relative;overflow:hidden;padding:clamp(1.5rem,4vw,3rem) 0 clamp(3.5rem,7vw,5.5rem);">
     <canvas ref="{{ dotCanvasRef }}" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;"></canvas>
-    <sc-if value="{{ isDark }}" hint-placeholder-val="{{ false }}"><div aria-hidden="true" style="position:absolute;left:-8%;top:4%;width:72%;height:82%;pointer-events:none;z-index:0;background:radial-gradient(58% 54% at 32% 42%,rgba(224,118,74,0.15),rgba(224,118,74,0.045) 46%,transparent 72%);filter:blur(20px);"></div></sc-if>
     <div style="position:relative;z-index:1;">
      <div style="display:flex;flex-wrap:wrap;gap:0.75rem 1.25rem;align-items:center;justify-content:space-between;margin:0 0 clamp(1.5rem,3vw,2.25rem);">
       <span style="font-family:'Space Mono',monospace;font-size:0.8rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);">Subhash Bhushan</span>
@@ -51,7 +50,7 @@ a:hover{text-decoration:underline;text-underline-offset:3px;text-decoration-thic
        </button>
       </span>
      </div>
-     <h1 style="font-family:'Darker Grotesque',sans-serif;font-weight:800;font-size:clamp(2.6rem,7.6vw,6rem);line-height:0.98;letter-spacing:-0.02em;color:var(--ink);margin:0;max-width:15ch;text-wrap:balance;"><span style="display:inline-block;opacity:0;animation:om-word .7s cubic-bezier(.2,.7,.2,1) both;animation-delay:.05s;">I</span> <span style="display:inline-block;opacity:0;animation:om-word .7s cubic-bezier(.2,.7,.2,1) both;animation-delay:.13s;">design</span> <span style="display:inline-block;opacity:0;animation:om-word .7s cubic-bezier(.2,.7,.2,1) both;animation-delay:.21s;">and</span> <span style="display:inline-block;opacity:0;animation:om-word .7s cubic-bezier(.2,.7,.2,1) both;animation-delay:.29s;">build</span> <span style="display:inline-block;opacity:0;animation:om-word .7s cubic-bezier(.2,.7,.2,1) both;animation-delay:.37s;color:var(--accent-fill);">ambitious</span> <span style="display:inline-block;opacity:0;animation:om-word .7s cubic-bezier(.2,.7,.2,1) both;animation-delay:.45s;color:var(--accent-fill);">systems.</span><sc-if value="{{ heroBooting }}" hint-placeholder-val="{{ false }}"><span style="display:inline-block;width:0.46em;height:0.84em;margin-left:0.08em;transform:translateY(0.08em);background:var(--accent-fill);animation:om-blink 1s step-end infinite;"></span></sc-if></h1>
+     <h1 style="font-family:'Darker Grotesque',sans-serif;font-weight:800;font-size:clamp(2.6rem,7.6vw,6rem);line-height:0.98;letter-spacing:-0.02em;color:var(--ink);margin:0;max-width:15ch;text-wrap:balance;"><span style="display:inline-block;opacity:0;animation:om-word .7s cubic-bezier(.2,.7,.2,1) both;animation-delay:.05s;">I</span> <span style="display:inline-block;opacity:0;animation:om-word .7s cubic-bezier(.2,.7,.2,1) both;animation-delay:.13s;">design</span> <span style="display:inline-block;opacity:0;animation:om-word .7s cubic-bezier(.2,.7,.2,1) both;animation-delay:.21s;">and</span> <span style="display:inline-block;opacity:0;animation:om-word .7s cubic-bezier(.2,.7,.2,1) both;animation-delay:.29s;">build</span> <span style="display:inline-block;opacity:0;animation:om-word .7s cubic-bezier(.2,.7,.2,1) both;animation-delay:.37s;color:var(--accent);">ambitious</span> <span style="display:inline-block;opacity:0;animation:om-word .7s cubic-bezier(.2,.7,.2,1) both;animation-delay:.45s;color:var(--accent);">systems.</span><sc-if value="{{ heroBooting }}" hint-placeholder-val="{{ false }}"><span style="display:inline-block;width:0.46em;height:0.84em;margin-left:0.08em;transform:translateY(0.08em);background:var(--accent);animation:om-blink 1s step-end infinite;"></span></sc-if></h1>
      <div style="display:flex;flex-wrap:wrap;gap:clamp(1.25rem,3vw,2.75rem);margin:clamp(1.75rem,3.5vw,2.5rem) 0 0;">
       <p style="flex:1 1 320px;min-width:0;font-family:'Archivo',sans-serif;font-weight:500;font-size:clamp(1.15rem,1.8vw,1.45rem);line-height:1.42;color:var(--ink);margin:0;text-wrap:pretty;">Large, complex software meant to grow, now built AI-natively on deep architecture and data foundations.</p>
       <p style="flex:1 1 320px;min-width:0;font-family:'Archivo',sans-serif;font-weight:400;font-size:clamp(1rem,1.35vw,1.12rem);line-height:1.62;color:var(--muted);margin:0;text-wrap:pretty;">Architecture and domain-modeling depth, AI-native building at production speed, and the discipline to ship. I build Protean, the open-source framework that encodes how.</p>
@@ -292,7 +291,7 @@ class Component extends DCLogic {
             const dist = Math.sqrt(dx * dx + dy * dy);
             const near = Math.max(0, 1 - dist / 150);
             const wave = 0.5 + 0.5 * Math.sin(t * 0.55 + x * 0.02 + y * 0.025);
-            const idle = dark ? (0.10 + 0.09 * wave) : (0.05 + 0.05 * wave);
+            const idle = 0.05 + 0.05 * wave;
             if (near > 0.02) {
               ctx.fillStyle = 'rgba(' + acc + ',' + Math.min(0.92, idle + near * 0.9) + ')';
               ctx.beginPath(); ctx.arc(x, y, r0 + near * 1.9, 0, 6.283); ctx.fill();
@@ -332,7 +331,6 @@ class Component extends DCLogic {
   renderVals() {
     return {
       theme: this.state.theme,
-      isDark: this.state.theme === 'dark',
       showConsole: this.props.showConsole ?? true,
       toggleTheme: this.toggleTheme,
       dotCanvasRef: this.dotCanvasRef,

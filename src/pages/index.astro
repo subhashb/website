@@ -426,7 +426,7 @@ const icons: Record<string, string> = {
       const dark = isDark();
       const gap = 28;
       const r0 = 1.05;
-      const base = dark ? '236,231,221' : '28,24,19';
+      const base = dark ? '239,233,223' : '28,24,19';
       const acc = dark ? '224,118,74' : '176,69,31';
       const t = ts / 1000;
       for (let y = gap / 2; y < h; y += gap) {
@@ -575,7 +575,7 @@ const icons: Record<string, string> = {
     animation: om-word 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
   }
   .word--accent {
-    color: var(--color-accent);
+    color: var(--color-accent-fill);
   }
   .hero__cursor {
     display: inline-block;
@@ -1021,7 +1021,7 @@ const icons: Record<string, string> = {
       opacity: 1;
     }
     .word--accent {
-      color: var(--color-accent);
+      color: var(--color-accent-fill);
     }
     .hero__cursor,
     .status-dot {

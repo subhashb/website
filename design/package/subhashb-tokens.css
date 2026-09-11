@@ -9,7 +9,8 @@
   --ink:      #1c1813; /* primary text */
   --muted:    #6f685c; /* secondary text, labels */
   --hairline: #e3ddd0; /* rules, borders */
-  --accent:   #b0451f; /* sienna, links + accent marks only */
+  --accent:   #b0451f; /* sienna, links + accent marks */
+  --accent-fill: #b0451f; /* large accent fills (hero phrase); same as accent in light */
 
   /* Type  —  load from Google Fonts:
      Darker+Grotesque:wght@600;700;800;900 | Archivo:wght@400;500;600;700 | Space+Mono */
@@ -18,13 +19,19 @@
   --font-mono:    'Space Mono', ui-monospace, monospace;     /* eyebrows, labels, console */
 }
 
+/* Dark is re-thought for a dark context, not a value-inversion: a warm
+   charcoal ground (not near-black), a clearly raised panel, stronger rules,
+   lifted muted text, and the large hero fill split off to a calmer sienna
+   so the bright accent stays reserved for links and small marks. Ground sits
+   in the #1C1813 family to match the wider subhashb.com dark surfaces. */
 [data-theme="dark"] {
-  --paper:    #100f0d;
-  --panel:    #17140f;
-  --ink:      #ece7dd;
-  --muted:    #8b8478;
-  --hairline: #2b2823;
-  --accent:   #e0764a;
+  --paper:    #1a1610; /* warm charcoal ground */
+  --panel:    #262019; /* raised surface, one clear step up */
+  --ink:      #efe9df;
+  --muted:    #a79f90; /* lifted for legibility on dark */
+  --hairline: #3a342b; /* visible rules */
+  --accent:   #e0764a; /* bright sienna: links + small marks */
+  --accent-fill: #c86339; /* deeper, calmer sienna for the large hero fill */
 }
 
 /* Accent is reserved for links (and small accent marks: status dot,
