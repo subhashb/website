@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Darker+Grotesque:wght@600;700;800;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+*{box-sizing:border-box;}
+body{margin:0;}
+::selection{background:var(--accent);color:#fff;}
+a{color:var(--accent);text-decoration:none;}
+a:hover{text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1.5px;}
+[data-theme="dark"]{--paper:#100f0d!important;--panel:#17140f!important;--ink:#ece7dd!important;--muted:#8b8478!important;--hairline:#2b2823!important;--accent:#e0764a!important;--syn-kw:#e0764a!important;--syn-type:#d6a24e!important;--syn-dec:#e0764a!important;--syn-str:#9db974!important;--syn-num:#d6a24e!important;}
+[data-seg]{display:none;}
+[data-theme="light"] [data-seg="light"]{display:inline-flex;}
+[data-theme="dark"] [data-seg="dark"]{display:inline-flex;}
+@keyframes om-word{from{opacity:0;transform:translateY(0.35em);filter:blur(8px);}to{opacity:1;transform:none;filter:blur(0);}}
+@keyframes om-blink{0%,50%{opacity:1;}50.01%,100%{opacity:0;}}
+@keyframes om-reveal{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:none;}}
+@keyframes om-pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
+</style>
+</helmet>
+<div data-theme="{{ theme }}" style="--paper:#f6f3ec;--panel:#fbf9f3;--ink:#1c1813;--muted:#6f685c;--hairline:#e3ddd0;--accent:#b0451f;--syn-kw:#b0451f;--syn-type:#8a5a00;--syn-dec:#a24a2c;--syn-str:#4f6b2f;--syn-num:#9a5b1e;background:var(--paper);color:var(--ink);min-height:100vh;font-family:'Archivo',system-ui,sans-serif;-webkit-font-smoothing:antialiased;">
+ <div style="max-width:1120px;margin:0 auto;padding:clamp(1.25rem,4vw,2.5rem);">
+
+  <main>
+
+   <section style="position:relative;overflow:hidden;padding:clamp(1.5rem,4vw,3rem) 0 clamp(3.5rem,7vw,5.5rem);">
+    <canvas ref="{{ dotCanvasRef }}" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;"></canvas>
+    <div style="position:relative;z-index:1;">
+     <div style="display:flex;flex-wrap:wrap;gap:0.75rem 1.25rem;align-items:center;justify-content:space-between;margin:0 0 clamp(1.5rem,3vw,2.25rem);">
+      <span style="font-family:'Space Mono',monospace;font-size:0.8rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);">Subhash Bhushan</span>
+      <span style="display:inline-flex;align-items:center;gap:0.9rem;">
+       <span style="font-family:'Space Mono',monospace;font-size:0.72rem;letter-spacing:0.08em;color:var(--muted);display:inline-flex;align-items:center;gap:0.5rem;">
+        <span style="width:7px;height:7px;border-radius:50%;background:var(--accent);animation:om-pulse 1.4s ease-in-out infinite;"></span>
+        <sc-if value="{{ heroReady }}" hint-placeholder-val="{{ false }}"><span>live</span></sc-if>
+        <sc-if value="{{ heroBooting }}" hint-placeholder-val="{{ true }}"><span>booting</span></sc-if>
+       </span>
+       <button onClick="{{ toggleTheme }}" aria-label="Toggle light or dark theme" title="Toggle light or dark" style="width:36px;height:36px;border:1px solid var(--hairline);border-radius:999px;background:transparent;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;padding:0;transition:border-color .18s;" style-hover="border-color:var(--accent);">
+        <span data-seg="light"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9.2 18h5.6M10.2 20.8h3.6" stroke="var(--muted)" stroke-width="1.5" stroke-linecap="round"/><path d="M12 3a6 6 0 0 0-3.6 10.8c.6.5 1 1.1 1.1 1.9l.1.8h4.8l.1-.8c.1-.8.5-1.4 1.1-1.9A6 6 0 0 0 12 3Z" fill="var(--accent)"/></svg></span>
+        <span data-seg="dark"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9.2 18h5.6M10.2 20.8h3.6" stroke="var(--muted)" stroke-width="1.5" stroke-linecap="round"/><path d="M12 3a6 6 0 0 0-3.6 10.8c.6.5 1 1.1 1.1 1.9l.1.8h4.8l.1-.8c.1-.8.5-1.4 1.1-1.9A6 6 0 0 0 12 3Z" fill="none" stroke="var(--muted)" stroke-width="1.5" stroke-linejoin="round"/></svg></span>
+       </button>
+      </span>
+     </div>
+     <h1 style="font-family:'Darker Grotesque',sans-serif;font-weight:800;font-size:clamp(2.6rem,7.6vw,6rem);line-height:0.98;letter-spacing:-0.02em;color:var(--ink);margin:0;max-width:15ch;text-wrap:balance;"><span style="display:inline-block;opacity:0;animation:om-word .7s cubic-bezier(.2,.7,.2,1) both;animation-delay:.05s;">I</span> <span style="display:inline-block;opacity:0;animation:om-word .7s cubic-bezier(.2,.7,.2,1) both;animation-delay:.13s;">design</span> <span style="display:inline-block;opacity:0;animation:om-word .7s cubic-bezier(.2,.7,.2,1) both;animation-delay:.21s;">and</span> <span style="display:inline-block;opacity:0;animation:om-word .7s cubic-bezier(.2,.7,.2,1) both;animation-delay:.29s;">build</span> <span style="display:inline-block;opacity:0;animation:om-word .7s cubic-bezier(.2,.7,.2,1) both;animation-delay:.37s;color:var(--accent);">ambitious</span> <span style="display:inline-block;opacity:0;animation:om-word .7s cubic-bezier(.2,.7,.2,1) both;animation-delay:.45s;color:var(--accent);">systems.</span><sc-if value="{{ heroBooting }}" hint-placeholder-val="{{ false }}"><span style="display:inline-block;width:0.46em;height:0.84em;margin-left:0.08em;transform:translateY(0.08em);background:var(--accent);animation:om-blink 1s step-end infinite;"></span></sc-if></h1>
+     <div style="display:flex;flex-wrap:wrap;gap:clamp(1.25rem,3vw,2.75rem);margin:clamp(1.75rem,3.5vw,2.5rem) 0 0;">
+      <p style="flex:1 1 320px;min-width:0;font-family:'Archivo',sans-serif;font-weight:500;font-size:clamp(1.15rem,1.8vw,1.45rem);line-height:1.42;color:var(--ink);margin:0;text-wrap:pretty;">Large, complex software meant to grow, now built AI-natively on deep architecture and data foundations.</p>
+      <p style="flex:1 1 320px;min-width:0;font-family:'Archivo',sans-serif;font-weight:400;font-size:clamp(1rem,1.35vw,1.12rem);line-height:1.62;color:var(--muted);margin:0;text-wrap:pretty;">Architecture and domain-modeling depth, AI-native building at production speed, and the discipline to ship. I build Protean, the open-source framework that encodes how.</p>
+     </div>
+     <p style="margin:clamp(1.75rem,3vw,2.25rem) 0 0;"><a href="#work" style="font-family:'Space Mono',monospace;font-size:0.85rem;letter-spacing:0.06em;text-transform:uppercase;display:inline-flex;align-items:center;gap:0.5rem;">See the work <span aria-hidden="true">&#8594;</span></a></p>
+    </div>
+   </section>
+
+   <section id="work" style="padding:clamp(2.75rem,5.5vw,4.5rem) 0;">
+    <div style="display:flex;align-items:baseline;gap:1rem;margin:0 0 clamp(1.75rem,3.5vw,2.5rem);">
+     <span style="font-family:'Space Mono',monospace;font-size:0.74rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink);white-space:nowrap;">Open source</span>
+     <span style="flex:1;height:1px;background:var(--hairline);"></span>
+     <a href="https://proteanhq.com" style="font-family:'Space Mono',monospace;font-size:0.74rem;letter-spacing:0.02em;white-space:nowrap;">proteanhq.com &#8599;</a>
+    </div>
+
+    <h2 style="font-family:'Darker Grotesque',sans-serif;font-weight:800;font-size:clamp(2.1rem,5.2vw,3.6rem);letter-spacing:-0.015em;line-height:0.95;color:var(--ink);margin:0;">Protean</h2>
+
+    <div style="display:flex;flex-wrap:wrap;gap:clamp(1.5rem,4vw,3rem);margin-top:1.25rem;align-items:flex-start;">
+     <p style="flex:1 1 360px;min-width:0;font-family:'Archivo',sans-serif;font-size:clamp(1.1rem,1.55vw,1.28rem);line-height:1.6;color:var(--ink);margin:0;max-width:56ch;text-wrap:pretty;">An open-source Python framework for large, domain-driven systems. It encodes the patterns that keep software correct as it grows: aggregates, domain events, and clean boundaries, so the domain model leads and infrastructure stays swappable.</p>
+     <div style="flex:0 1 210px;min-width:160px;">
+      <div style="font-family:'Space Mono',monospace;font-size:0.66rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);padding-bottom:0.6rem;">Building blocks</div>
+      <div style="font-family:'Space Mono',monospace;font-size:0.85rem;color:var(--ink);border-bottom:1px solid var(--hairline);">
+       <div style="padding:0.5rem 0;border-top:1px solid var(--hairline);">Aggregates</div>
+       <div style="padding:0.5rem 0;border-top:1px solid var(--hairline);">Domain events</div>
+       <div style="padding:0.5rem 0;border-top:1px solid var(--hairline);">Repositories</div>
+       <div style="padding:0.5rem 0;border-top:1px solid var(--hairline);">Ports and adapters</div>
+      </div>
+     </div>
+    </div>
+
+    <sc-if value="{{ showConsole }}" hint-placeholder-val="{{ true }}">
+     <div style="margin-top:clamp(1.5rem,3vw,2.25rem);border:1px solid var(--hairline);background:var(--panel);">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:0.6rem 0.9rem;border-bottom:1px solid var(--hairline);">
+       <span style="font-family:'Space Mono',monospace;font-size:0.66rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);">protean &#183; account.py</span>
+       <span style="font-family:'Space Mono',monospace;font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);border:1px solid var(--hairline);padding:0.22rem 0.55rem;">example</span>
+      </div>
+      <div style="padding:1.1rem 1.15rem;overflow-x:auto;font-family:'Space Mono',monospace;font-size:0.8rem;line-height:1.7;">
+<div style="margin:0;color:var(--ink);white-space:pre;"><div><span style="color:var(--syn-kw);">from</span> protean <span style="color:var(--syn-kw);">import</span> <span style="color:var(--syn-type);">Domain</span></div><div><span style="color:var(--syn-kw);">from</span> protean.fields <span style="color:var(--syn-kw);">import</span> <span style="color:var(--syn-type);">String</span>, <span style="color:var(--syn-type);">Integer</span></div><div>&#160;</div><div>domain = <span style="color:var(--syn-type);">Domain</span>(__name__)</div><div>&#160;</div><div><span style="color:var(--syn-dec);font-style:italic;">@domain.aggregate</span></div><div><span style="color:var(--syn-kw);">class</span> <span style="color:var(--syn-type);">Account</span>:</div><div>    name = <span style="color:var(--syn-type);">String</span>(max_length=<span style="color:var(--syn-num);">120</span>, required=<span style="color:var(--syn-kw);">True</span>)</div><div>    balance = <span style="color:var(--syn-type);">Integer</span>(default=<span style="color:var(--syn-num);">0</span>)</div><div>&#160;</div><div>    <span style="color:var(--syn-kw);">def</span> <span style="color:var(--syn-type);">credit</span>(self, amount):</div><div>        self.balance += amount</div><div>        self.raise_(<span style="color:var(--syn-type);">Credited</span>(account_id=self.id, amount=amount))</div><div>&#160;</div><div>account = <span style="color:var(--syn-type);">Account</span>(name=<span style="color:var(--syn-str);">"Reserve"</span>)</div><div>account.credit(<span style="color:var(--syn-num);">2500</span>)</div></div>
+      </div>
+     </div>
+    </sc-if>
+   </section>
+
+   <section style="padding:clamp(2.75rem,5.5vw,4.5rem) 0;">
+    <div style="display:flex;align-items:baseline;gap:1rem;margin:0 0 clamp(1.5rem,3vw,2rem);">
+     <span style="font-family:'Space Mono',monospace;font-size:0.74rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink);white-space:nowrap;">Track record</span>
+     <span style="flex:1;height:1px;background:var(--hairline);"></span>
+    </div>
+    <p style="font-family:'Archivo',sans-serif;font-size:clamp(1.1rem,1.55vw,1.3rem);line-height:1.55;color:var(--ink);margin:0 0 clamp(1.5rem,3vw,2rem);max-width:90ch;">Twenty-three years shipping production software, from core banking to the platforms I run today.</p>
+    <div style="border-bottom:1px solid var(--hairline);">
+     <sc-for list="{{ history }}" as="row" hint-placeholder-count="6">
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:0.35rem 1.5rem;padding:clamp(0.95rem,1.9vw,1.25rem) 0;border-top:1px solid var(--hairline);">
+       <div style="display:flex;align-items:baseline;gap:0.9rem;min-width:0;flex:1 1 260px;">
+        <span style="font-family:'Darker Grotesque',sans-serif;font-weight:700;font-size:clamp(1.15rem,1.9vw,1.5rem);letter-spacing:-0.01em;color:var(--ink);">{{ row.name }}</span>
+        <sc-if value="{{ row.now }}" hint-placeholder-val="{{ false }}">
+         <span style="font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);border:1px solid var(--accent);padding:0.1rem 0.35rem;white-space:nowrap;">Present</span>
+        </sc-if>
+       </div>
+       <span style="flex:1 1 300px;font-family:'Archivo',sans-serif;font-size:clamp(0.98rem,1.3vw,1.08rem);line-height:1.5;color:var(--muted);">{{ row.desc }}</span>
+      </div>
+     </sc-for>
+    </div>
+   </section>
+
+   <section style="padding:clamp(2.75rem,5.5vw,4.5rem) 0;">
+    <div style="display:flex;align-items:baseline;gap:1rem;margin:0 0 clamp(1.75rem,3.5vw,2.5rem);">
+     <span style="font-family:'Space Mono',monospace;font-size:0.74rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink);white-space:nowrap;">Writing</span>
+     <span style="flex:1;height:1px;background:var(--hairline);"></span>
+     <a href="https://ambitious.systems" style="font-family:'Space Mono',monospace;font-size:0.74rem;letter-spacing:0.02em;white-space:nowrap;">ambitious.systems <span aria-hidden="true">&#8599;</span></a>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:clamp(1.5rem,4vw,3.5rem);align-items:flex-start;justify-content:space-between;">
+     <div style="flex:0 1 520px;min-width:0;max-width:42ch;">
+      <h2 style="font-family:'Darker Grotesque',sans-serif;font-weight:800;font-size:clamp(2.1rem,5.2vw,3.6rem);letter-spacing:-0.015em;line-height:0.92;color:var(--ink);margin:0;">Ambitious Systems</h2>
+      <p style="font-family:'Archivo',sans-serif;font-size:clamp(1.1rem,1.55vw,1.32rem);line-height:1.55;color:var(--ink);margin:1.2rem 0 0;text-wrap:pretty;">When a machine writes most of the code, the scarce input is judgment: what to build, how to model the domain, and how to keep a large system correct as it grows.</p>
+      <p style="margin:1.5rem 0 0;"><a href="https://ambitious.systems" style="font-family:'Space Mono',monospace;font-size:0.82rem;letter-spacing:0.04em;text-transform:uppercase;">Read the essays <span aria-hidden="true">&#8599;</span></a></p>
+     </div>
+     <div style="flex:0 1 320px;min-width:0;">
+      <div style="font-family:'Space Mono',monospace;font-size:0.66rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);padding-bottom:0.5rem;">What I write about</div>
+      <div style="border-bottom:1px solid var(--hairline);">
+       <div style="padding:0.7rem 0;border-top:1px solid var(--hairline);font-family:'Archivo',sans-serif;font-size:clamp(1.02rem,1.4vw,1.18rem);color:var(--ink);">Domain modeling</div>
+       <div style="padding:0.7rem 0;border-top:1px solid var(--hairline);font-family:'Archivo',sans-serif;font-size:clamp(1.02rem,1.4vw,1.18rem);color:var(--ink);">AI-native building</div>
+       <div style="padding:0.7rem 0;border-top:1px solid var(--hairline);font-family:'Archivo',sans-serif;font-size:clamp(1.02rem,1.4vw,1.18rem);color:var(--ink);">Software architecture</div>
+       <div style="padding:0.7rem 0;border-top:1px solid var(--hairline);font-family:'Archivo',sans-serif;font-size:clamp(1.02rem,1.4vw,1.18rem);color:var(--ink);">Keeping large systems correct</div>
+       <div style="padding:0.7rem 0;border-top:1px solid var(--hairline);font-family:'Archivo',sans-serif;font-size:clamp(1.02rem,1.4vw,1.18rem);color:var(--ink);">Team and craft</div>
+       <div style="padding:0.7rem 0;border-top:1px solid var(--hairline);font-family:'Archivo',sans-serif;font-size:clamp(1.02rem,1.4vw,1.18rem);color:var(--ink);">Shipping to production</div>
+      </div>
+     </div>
+    </div>
+   </section>
+
+   <section style="padding:clamp(2.75rem,5.5vw,4.5rem) 0;">
+    <div style="display:flex;align-items:baseline;gap:1rem;margin:0 0 clamp(1.75rem,3.5vw,2.5rem);">
+     <span style="font-family:'Space Mono',monospace;font-size:0.74rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink);white-space:nowrap;">About</span>
+     <span style="flex:1;height:1px;background:var(--hairline);"></span>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:clamp(1.5rem,4vw,3.5rem);align-items:flex-start;justify-content:space-between;">
+     <div style="flex:1 1 440px;min-width:0;display:flex;flex-wrap:wrap;gap:clamp(1.25rem,3vw,2rem);align-items:flex-start;">
+      <div style="flex:0 0 clamp(130px,26%,170px);">
+       <div style="aspect-ratio:4/5;border:1px solid var(--hairline);overflow:hidden;">
+        <image-slot id="subhash-portrait" shape="rect" fit="cover" placeholder="Portrait"></image-slot>
+       </div>
+      </div>
+      <div style="flex:1 1 240px;min-width:0;max-width:34ch;">
+       <p style="font-family:'Darker Grotesque',sans-serif;font-weight:800;font-size:clamp(1.6rem,2.8vw,2.3rem);line-height:1.0;letter-spacing:-0.015em;color:var(--ink);margin:0;text-wrap:balance;">I build software and the teams that run it.</p>
+       <p style="font-family:'Archivo',sans-serif;font-size:clamp(1.05rem,1.5vw,1.2rem);line-height:1.55;color:var(--muted);margin:1.1rem 0 0;">Twenty-three years of it, from core banking to the platforms I run today.</p>
+      </div>
+     </div>
+     <div style="flex:0 1 300px;min-width:0;">
+      <div style="border-bottom:1px solid var(--hairline);">
+       <div style="padding:0.85rem 0;border-top:1px solid var(--hairline);">
+        <div style="font-family:'Space Mono',monospace;font-size:0.64rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:0.3rem;">Role</div>
+        <div style="font-family:'Archivo',sans-serif;font-size:clamp(1.05rem,1.4vw,1.2rem);line-height:1.4;color:var(--ink);">Co-founder and CTO, Team8 Solutions</div>
+       </div>
+       <div style="padding:0.85rem 0;border-top:1px solid var(--hairline);">
+        <div style="font-family:'Space Mono',monospace;font-size:0.64rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:0.3rem;">In the open</div>
+        <div style="font-family:'Archivo',sans-serif;font-size:clamp(1.05rem,1.4vw,1.2rem);line-height:1.4;color:var(--ink);">Protean</div>
+       </div>
+       <div style="padding:0.85rem 0;border-top:1px solid var(--hairline);">
+        <div style="font-family:'Space Mono',monospace;font-size:0.64rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:0.3rem;">Autonomy</div>
+        <div style="font-family:'Archivo',sans-serif;font-size:clamp(1.05rem,1.4vw,1.2rem);line-height:1.4;color:var(--ink);">A system that ships to production behind quality gates</div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section>
+
+   <section style="padding:clamp(2.75rem,5.5vw,4.5rem) 0;">
+    <div style="display:flex;align-items:baseline;gap:1rem;margin:0 0 clamp(1.25rem,2.5vw,1.75rem);">
+     <span style="font-family:'Space Mono',monospace;font-size:0.74rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink);white-space:nowrap;">Elsewhere</span>
+     <span style="flex:1;height:1px;background:var(--hairline);"></span>
+    </div>
+    <sc-for list="{{ links }}" as="link" hint-placeholder-count="5">
+     <a href="{{ link.href }}" style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:0.6rem 1.25rem;padding:clamp(0.9rem,1.9vw,1.2rem) 0;border-top:1px solid var(--hairline);color:inherit;text-decoration:none;">
+      <span style="display:flex;align-items:center;gap:1rem;min-width:0;">
+       <span aria-hidden="true" style="flex:0 0 auto;width:40px;height:40px;border:1px solid var(--hairline);display:inline-flex;align-items:center;justify-content:center;color:var(--ink);">{{ link.icon }}</span>
+       <span style="font-family:'Darker Grotesque',sans-serif;font-weight:700;font-size:clamp(1.1rem,1.7vw,1.4rem);letter-spacing:-0.01em;color:var(--ink);">{{ link.label }}</span>
+      </span>
+      <span style="font-family:'Space Mono',monospace;font-size:0.8rem;letter-spacing:0.02em;color:var(--accent);">{{ link.display }}</span>
+     </a>
+    </sc-for>
+    <div style="border-top:1px solid var(--hairline);"></div>
+   </section>
+
+  </main>
+
+  <footer style="border-top:1px solid var(--ink);margin-top:0;padding:clamp(1.75rem,3vw,2.25rem) 0 clamp(2.5rem,5vw,3.5rem);display:flex;flex-wrap:wrap;gap:0.75rem 1.5rem;justify-content:space-between;">
+   <span style="font-family:'Space Mono',monospace;font-size:0.72rem;letter-spacing:0.03em;color:var(--muted);">Built AI-natively with Astro. Source at <a href="https://github.com/subhashb/website">github.com/subhashb/website</a>.</span>
+   <span style="font-family:'Space Mono',monospace;font-size:0.72rem;letter-spacing:0.03em;color:var(--muted);">Subhash Bhushan</span>
+  </footer>
+
+  <sc-if value="{{ showHint }}" hint-placeholder-val="{{ false }}">
+   <div aria-hidden="true" style="position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:60;pointer-events:none;font-family:'Space Mono',monospace;font-size:0.66rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);background:var(--panel);border:1px solid var(--hairline);border-radius:999px;padding:0.45rem 0.9rem;display:inline-flex;gap:0.55rem;align-items:center;box-shadow:0 6px 20px rgba(0,0,0,0.07);">
+    <span style="font-size:0.9rem;line-height:1;letter-spacing:0;">&#8593;&#8595;</span>
+    <span>jump between sections</span>
+   </div>
+  </sc-if>
+
+ </div>
+</div>
+
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><rect width="400" height="400" fill="#b0451f"/><text x="200" y="212" text-anchor="middle" dominant-baseline="middle" font-family="Archivo, Arial, sans-serif" font-weight="800" font-size="150" letter-spacing="-6" fill="#f6f3ec">SB</text></svg></template></x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;dark&quot;],&quot;default&quot;:&quot;light&quot;,&quot;tsType&quot;:&quot;'light' | 'dark'&quot;,&quot;section&quot;:&quot;Theme&quot;},&quot;showConsole&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Protean&quot;}}">
+class Component extends DCLogic {
+  state = { theme: 'light', heroPhase: 'booting', showHint: true };
+  dotCanvasRef = React.createRef();
+  componentDidMount() {
+    const t = this.props.theme;
+    if (t === 'dark' || t === 'light') this.setState({ theme: t });
+    this._boot = setTimeout(() => this.setState({ heroPhase: 'live' }), 1300);
+    this._initField();
+    this._hintTimer = setTimeout(() => this.setState({ showHint: false }), 6000);
+    this._onKey = (e) => {
+      if (e.metaKey || e.ctrlKey || e.altKey || e.shiftKey) return;
+      const tag = (e.target && e.target.tagName) || '';
+      if (tag === 'INPUT' || tag === 'TEXTAREA' || (e.target && e.target.isContentEditable)) return;
+      let dir = 0;
+      if (e.key === 'PageDown' || e.key === 'j') dir = 1;
+      else if (e.key === 'PageUp' || e.key === 'k') dir = -1;
+      else return;
+      e.preventDefault();
+      this._hideHint();
+      this._jump(dir);
+    };
+    this._onScroll = () => this._hideHint();
+    window.addEventListener('keydown', this._onKey);
+    window.addEventListener('wheel', this._onScroll, { passive: true });
+    window.addEventListener('touchmove', this._onScroll, { passive: true });
+  }
+  componentWillUnmount() {
+    cancelAnimationFrame(this._raf);
+    clearTimeout(this._boot);
+    clearTimeout(this._hintTimer);
+    window.removeEventListener('resize', this._onResize);
+    window.removeEventListener('keydown', this._onKey);
+    window.removeEventListener('wheel', this._onScroll);
+    window.removeEventListener('touchmove', this._onScroll);
+    if (this._sec && this._onMove) { this._sec.removeEventListener('pointermove', this._onMove); this._sec.removeEventListener('pointerleave', this._onLeave); }
+  }
+  _hideHint = () => { if (this.state.showHint) this.setState({ showHint: false }); };
+  _jump = (dir) => {
+    const nodes = Array.prototype.slice.call(document.querySelectorAll('main > section, footer'));
+    if (!nodes.length) return;
+    const tops = nodes.map((n) => Math.max(0, Math.round(n.getBoundingClientRect().top + window.scrollY - 20)));
+    const cur = window.scrollY;
+    const eps = 10;
+    let curIdx = 0;
+    for (let i = 0; i < tops.length; i++) { if (tops[i] <= cur + eps) curIdx = i; else break; }
+    let ti;
+    if (dir > 0) ti = Math.min(tops.length - 1, curIdx + 1);
+    else ti = (cur - tops[curIdx] > eps) ? curIdx : Math.max(0, curIdx - 1);
+    window.scrollTo({ top: tops[ti], behavior: 'smooth' });
+  };
+  _initField() {
+    const cv = this.dotCanvasRef.current;
+    if (!cv) return;
+    const sec = cv.parentElement;
+    this._sec = sec;
+    this.mouse = { x: -9999, y: -9999 };
+    this._onMove = (e) => { const r = cv.getBoundingClientRect(); this.mouse.x = e.clientX - r.left; this.mouse.y = e.clientY - r.top; };
+    this._onLeave = () => { this.mouse.x = -9999; this.mouse.y = -9999; };
+    sec.addEventListener('pointermove', this._onMove);
+    sec.addEventListener('pointerleave', this._onLeave);
+    this._onResize = () => this._resize();
+    window.addEventListener('resize', this._onResize);
+    this._resize();
+    const draw = (ts) => {
+      const ctx = this._ctx, w = this._w, h = this._h;
+      if (ctx) {
+        ctx.clearRect(0, 0, w, h);
+        const dark = this.state.theme === 'dark';
+        const gap = 28, r0 = 1.05;
+        const base = dark ? '236,231,221' : '28,24,19';
+        const acc = dark ? '224,118,74' : '176,69,31';
+        const t = ts / 1000;
+        for (let y = gap / 2; y < h; y += gap) {
+          for (let x = gap / 2; x < w; x += gap) {
+            const dx = x - this.mouse.x, dy = y - this.mouse.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            const near = Math.max(0, 1 - dist / 150);
+            const wave = 0.5 + 0.5 * Math.sin(t * 0.55 + x * 0.02 + y * 0.025);
+            const idle = 0.05 + 0.05 * wave;
+            if (near > 0.02) {
+              ctx.fillStyle = 'rgba(' + acc + ',' + Math.min(0.92, idle + near * 0.9) + ')';
+              ctx.beginPath(); ctx.arc(x, y, r0 + near * 1.9, 0, 6.283); ctx.fill();
+            } else {
+              ctx.fillStyle = 'rgba(' + base + ',' + idle + ')';
+              ctx.beginPath(); ctx.arc(x, y, r0, 0, 6.283); ctx.fill();
+            }
+          }
+        }
+      }
+      this._raf = requestAnimationFrame(draw);
+    };
+    this._raf = requestAnimationFrame(draw);
+  }
+  _resize() {
+    const cv = this.dotCanvasRef.current;
+    if (!cv) return;
+    const rect = cv.getBoundingClientRect();
+    if (!rect.width || !rect.height) return;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    this._w = rect.width; this._h = rect.height;
+    cv.width = Math.round(rect.width * dpr);
+    cv.height = Math.round(rect.height * dpr);
+    const ctx = cv.getContext('2d');
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    this._ctx = ctx;
+  }
+  toggleTheme = () => this.setState(s => ({ theme: s.theme === 'light' ? 'dark' : 'light' }));
+  icon(name) {
+    const mono = (ch) => React.createElement('span', { style: { fontFamily: "'Darker Grotesque',sans-serif", fontWeight: 800, fontSize: '20px', lineHeight: 1, color: 'var(--ink)' } }, ch);
+    if (name === 'github') return React.createElement('svg', { width: 18, height: 18, viewBox: '0 0 24 24', fill: 'currentColor', 'aria-hidden': true }, React.createElement('path', { d: 'M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 016 0C17.3 4.7 18.3 5 18.3 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .4.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z' }));
+    if (name === 'linkedin') return React.createElement('svg', { width: 18, height: 18, viewBox: '0 0 24 24', fill: 'currentColor', 'aria-hidden': true }, React.createElement('path', { d: 'M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 110-4.13 2.06 2.06 0 010 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z' }));
+    if (name === 'mail') return React.createElement('svg', { width: 19, height: 19, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 1.6, 'aria-hidden': true }, React.createElement('rect', { x: 3, y: 5, width: 18, height: 14, rx: 1.5 }), React.createElement('path', { d: 'M3.5 6.5 12 12.8l8.5-6.3' }));
+    if (name === 'P' || name === 'A') return mono(name);
+    return null;
+  }
+  renderVals() {
+    return {
+      theme: this.state.theme,
+      showConsole: this.props.showConsole ?? true,
+      toggleTheme: this.toggleTheme,
+      dotCanvasRef: this.dotCanvasRef,
+      heroReady: this.state.heroPhase === 'live',
+      heroBooting: this.state.heroPhase === 'booting',
+      showHint: this.state.showHint,
+      history: [
+        { name: 'Team8 Solutions', desc: 'Co-founder and CTO', now: true },
+        { name: 'Global sustainability consultancy', desc: 'Enterprise data platforms and modernization at scale', now: false },
+        { name: 'JustBooks', desc: 'Retail library network, grown from one store to 63', now: false },
+        { name: 'Kaybus', desc: 'Product engineering', now: false },
+        { name: 'FLEXCUBE', desc: 'Core banking platform', now: false },
+        { name: 'RBI RTGS', desc: 'Real-time gross settlement for the Reserve Bank of India', now: false },
+      ],
+      links: [
+        { label: 'Protean', display: 'proteanhq.com', href: 'https://proteanhq.com', icon: this.icon('P') },
+        { label: 'Ambitious Systems', display: 'ambitious.systems', href: 'https://ambitious.systems', icon: this.icon('A') },
+        { label: 'GitHub', display: 'github.com/subhashb', href: 'https://github.com/subhashb', icon: this.icon('github') },
+        { label: 'LinkedIn', display: 'linkedin.com/in/subhashb', href: 'https://www.linkedin.com/in/subhashb', icon: this.icon('linkedin') },
+        { label: 'Email', display: 'subhash.bhushan@gmail.com', href: 'mailto:subhash.bhushan@gmail.com', icon: this.icon('mail') },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

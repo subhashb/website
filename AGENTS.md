@@ -12,11 +12,11 @@ Plain, declarative, understated. State the proof; do not hedge it and do not inf
 
 ## Structure
 
-A single-page hub: hero, selected work, writing, about, elsewhere, colophon. Curate to a handful per section. One clear primary action.
+A single-page hub: hero, selected work (Protean), track record, writing, about, elsewhere, colophon. Curate to a handful per section. One clear primary action.
 
 ## Design
 
-Minimal and typographic. Monochrome plus one accent, used on links. Whitespace carries it; the punch is scale contrast on the hero line. A proper dark and light that respects system preference. Sparing, functional motion. The visual source of truth is the Claude Design package in `design/` (tokens, reference layouts). Keep the generic-AI-template look off the site: no purple gradient hero, no glassmorphism cards, no blurred blobs, no three-column feature rows, no emoji bullets.
+Minimal and typographic. Monochrome plus one accent, used on links. Whitespace carries it; the punch is scale contrast on the hero line. A proper dark and light that respects system preference. Sparing, functional motion. The visual source of truth is the Claude Design package in `design/package/` (drop a new export there; `design/SYNC.md` has the loop). Keep the generic-AI-template look off the site: no purple gradient hero, no glassmorphism cards, no blurred blobs, no three-column feature rows, no emoji bullets.
 
 ## Stack
 

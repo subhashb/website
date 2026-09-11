@@ -1,0 +1,33 @@
+/* subhashb.com design tokens
+   Palette + type for the identity hub. One accent, used on links only.
+   Light is the default; [data-theme="dark"] overrides the same names. */
+
+:root {
+  /* Palette */
+  --paper:    #f6f3ec; /* page ground */
+  --panel:    #fbf9f3; /* raised surface: console, cards */
+  --ink:      #1c1813; /* primary text */
+  --muted:    #6f685c; /* secondary text, labels */
+  --hairline: #e3ddd0; /* rules, borders */
+  --accent:   #b0451f; /* sienna, links + accent marks only */
+
+  /* Type  —  load from Google Fonts:
+     Darker+Grotesque:wght@600;700;800;900 | Archivo:wght@400;500;600;700 | Space+Mono */
+  --font-display: 'Darker Grotesque', system-ui, sans-serif; /* hero + headings, weight 700-800 */
+  --font-body:    'Archivo', system-ui, sans-serif;          /* body copy */
+  --font-mono:    'Space Mono', ui-monospace, monospace;     /* eyebrows, labels, console */
+}
+
+[data-theme="dark"] {
+  --paper:    #100f0d;
+  --panel:    #17140f;
+  --ink:      #ece7dd;
+  --muted:    #8b8478;
+  --hairline: #2b2823;
+  --accent:   #e0764a;
+}
+
+/* Accent is reserved for links (and small accent marks: status dot,
+   Run border, Present tag, the hero dot-field). Body text stays --ink. */
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1.5px; }
