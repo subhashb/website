@@ -1,31 +1,83 @@
 @import "tailwindcss";
 
-/* Design tokens. Mirrored from design/tokens.css (the design package is the source of truth). */
+/*
+  Design tokens. Mirrored from design/package/subhashb-tokens.css (the Claude
+  Design package is the source of truth). Darker Grotesque carries the display
+  headings, Archivo the body, Space Mono the eyebrows, labels, and console.
+*/
 @theme {
-  --font-sans: "Geist Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
-  --font-mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --font-sans: "Archivo", system-ui, sans-serif;
+  --font-display: "Darker Grotesque", system-ui, sans-serif;
+  --font-mono: "Space Mono", ui-monospace, monospace;
 
+  /* Light palette (default). */
   --color-paper: #f6f3ec;
+  --color-panel: #fbf9f3;
   --color-ink: #1c1813;
   --color-muted: #6f685c;
   --color-line: #e3ddd0;
   --color-accent: #b0451f;
 }
 
-/* Dark theme: override the same tokens under the system preference. */
+/* Console syntax highlighting. Light values here; dark overrides below. */
+:root {
+  --syn-kw: #b0451f;
+  --syn-type: #8a5a00;
+  --syn-dec: #a24a2c;
+  --syn-str: #4f6b2f;
+  --syn-num: #9a5b1e;
+}
+
+/*
+  Theme has three states. With no explicit choice, the system preference
+  decides. A stored choice stamps data-theme on <html> and wins in both
+  directions. Every palette value is redefined per state so utilities that read
+  var(--color-*) recolor correctly.
+*/
+:root {
+  color-scheme: light;
+}
+
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
     --color-paper: #100f0d;
+    --color-panel: #17140f;
     --color-ink: #ece7dd;
-    --color-muted: #8f887d;
-    --color-line: #2a2621;
+    --color-muted: #8b8478;
+    --color-line: #2b2823;
     --color-accent: #e0764a;
+    --syn-kw: #e0764a;
+    --syn-type: #d6a24e;
+    --syn-dec: #e0764a;
+    --syn-str: #9db974;
+    --syn-num: #d6a24e;
   }
 }
 
-:root {
-  color-scheme: light dark;
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --color-paper: #100f0d;
+  --color-panel: #17140f;
+  --color-ink: #ece7dd;
+  --color-muted: #8b8478;
+  --color-line: #2b2823;
+  --color-accent: #e0764a;
+  --syn-kw: #e0764a;
+  --syn-type: #d6a24e;
+  --syn-dec: #e0764a;
+  --syn-str: #9db974;
+  --syn-num: #d6a24e;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --color-paper: #f6f3ec;
+  --color-panel: #fbf9f3;
+  --color-ink: #1c1813;
+  --color-muted: #6f685c;
+  --color-line: #e3ddd0;
+  --color-accent: #b0451f;
 }
 
 html {
@@ -40,7 +92,73 @@ body {
   margin: 0;
 }
 
+::selection {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+/* Accent is reserved for links and small accent marks. Body text stays ink. */
 a {
-  color: inherit;
+  color: var(--color-accent);
   text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1.5px;
+}
+
+img {
+  max-width: 100%;
+}
+
+/*
+  Theme toggle: show the icon for the active theme, or, with no explicit
+  choice, the one the system resolves to.
+*/
+[data-seg] {
+  display: none;
+}
+:root[data-theme="light"] [data-seg="light"],
+:root[data-theme="dark"] [data-seg="dark"] {
+  display: inline-flex;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) [data-seg="light"] {
+    display: inline-flex;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) [data-seg="dark"] {
+    display: inline-flex;
+  }
+}
+
+/* Motion. All of it sparing and functional; none of it required to read. */
+@keyframes om-word {
+  from { opacity: 0; transform: translateY(0.35em); filter: blur(8px); }
+  to { opacity: 1; transform: none; filter: blur(0); }
+}
+@keyframes om-blink {
+  0%, 50% { opacity: 1; }
+  50.01%, 100% { opacity: 0; }
+}
+@keyframes om-reveal {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes om-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
 }
