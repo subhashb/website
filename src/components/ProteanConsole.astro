@@ -1,0 +1,95 @@
+---
+// The Protean console from the design: a static, syntax-highlighted code
+// example. It shows an aggregate with a business method that mutates state and
+// raises a domain event. Presentation only, no runtime.
+---
+
+<div class="console">
+  <div class="console__bar">
+    <span class="console__file">protean · account.py</span>
+    <span class="console__tag">example</span>
+  </div>
+  <div class="console__body">
+<pre class="console__code"><span class="syn-kw">from</span> protean <span class="syn-kw">import</span> <span class="syn-type">Domain</span>
+<span class="syn-kw">from</span> protean.fields <span class="syn-kw">import</span> <span class="syn-type">String</span>, <span class="syn-type">Integer</span>
+
+domain = <span class="syn-type">Domain</span>(__name__)
+
+<span class="syn-dec">@domain.aggregate</span>
+<span class="syn-kw">class</span> <span class="syn-type">Account</span>:
+    name = <span class="syn-type">String</span>(max_length=<span class="syn-num">120</span>, required=<span class="syn-kw">True</span>)
+    balance = <span class="syn-type">Integer</span>(default=<span class="syn-num">0</span>)
+
+    <span class="syn-kw">def</span> <span class="syn-type">credit</span>(self, amount):
+        self.balance += amount
+        self.raise_(<span class="syn-type">Credited</span>(account_id=self.id, amount=amount))
+
+account = <span class="syn-type">Account</span>(name=<span class="syn-str">"Reserve"</span>)
+account.credit(<span class="syn-num">2500</span>)</pre>
+  </div>
+</div>
+
+<style>
+  .console {
+    margin-top: clamp(1.5rem, 3vw, 2.25rem);
+    border: 1px solid var(--color-line);
+    background: var(--color-panel);
+  }
+
+  .console__bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.6rem 0.9rem;
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .console__file {
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+
+  .console__tag {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    border: 1px solid var(--color-line);
+    padding: 0.22rem 0.55rem;
+  }
+
+  .console__body {
+    padding: 1.1rem 1.15rem;
+    overflow-x: auto;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    line-height: 1.7;
+  }
+
+  .console__code {
+    margin: 0;
+    color: var(--color-ink);
+    white-space: pre;
+  }
+
+  .syn-kw {
+    color: var(--syn-kw);
+  }
+  .syn-type {
+    color: var(--syn-type);
+  }
+  .syn-dec {
+    color: var(--syn-dec);
+    font-style: italic;
+  }
+  .syn-str {
+    color: var(--syn-str);
+  }
+  .syn-num {
+    color: var(--syn-num);
+  }
+</style>
