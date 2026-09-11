@@ -14,16 +14,36 @@ const heroWords = [
 const buildingBlocks = ['Aggregates', 'Domain events', 'Repositories', 'Ports and adapters'];
 
 const history = [
-  { name: 'Team8 Solutions', desc: 'Co-founder and CTO', now: true },
   {
-    name: 'Global sustainability consultancy',
-    desc: 'Enterprise data platforms and modernization at scale',
+    name: 'Team8 Solutions',
+    facets: ['Co-founder', 'CTO and VP', 'Enterprise data and architecture at scale'],
+    now: true,
+  },
+  {
+    name: 'Ultimo Studios',
+    facets: ['CTO', 'Engineering, product, and strategy', 'SOC 2 and ISO certified'],
     now: false,
   },
-  { name: 'JustBooks', desc: 'Retail library network, grown from one store to 63', now: false },
-  { name: 'Kaybus', desc: 'Product engineering', now: false },
-  { name: 'FLEXCUBE', desc: 'Core banking platform', now: false },
-  { name: 'RBI RTGS', desc: 'Real-time gross settlement for the Reserve Bank of India', now: false },
+  {
+    name: 'Kaybus',
+    facets: ['Director of Engineering', 'Platform and business engineering', 'Through the acquisition'],
+    now: false,
+  },
+  {
+    name: 'JustBooks',
+    facets: ['Co-founder', 'Built the platform end to end', 'One store to 63'],
+    now: false,
+  },
+  {
+    name: 'i-flex Solutions (Oracle)',
+    facets: ['Technology Consultant', 'FLEXCUBE corporate banking', 'Worldwide pre-sales'],
+    now: false,
+  },
+  {
+    name: 'Logica (LogicaCMG)',
+    facets: ['Associate Consultant', 'RBI RTGS core banking', 'Built from the ground up'],
+    now: false,
+  },
 ];
 
 const writingTopics = [
@@ -36,9 +56,10 @@ const writingTopics = [
 ];
 
 const aboutFacts = [
-  { label: 'Role', value: 'Co-founder and CTO, Team8 Solutions' },
+  { label: 'Role', value: 'Co-founder, CTO and VP, Team8 Solutions' },
+  { label: 'Advising', value: 'A global sustainability consultancy, at the CDO level' },
   { label: 'In the open', value: 'Protean' },
-  { label: 'Autonomy', value: 'A system that ships to production behind quality gates' },
+  { label: 'AI-native', value: 'An autonomous loop that ships to production behind quality gates' },
 ];
 
 const links = [
@@ -170,7 +191,11 @@ const icons: Record<string, string> = {
                   <span class="record-name">{row.name}</span>
                   {row.now && <span class="record-tag">Present</span>}
                 </div>
-                <span class="record-desc">{row.desc}</span>
+                <div class="record-facets">
+                  {row.facets.map((facet, i) => (
+                    <span class:list={['record-facet', i === 0 && 'record-facet--lead']}>{facet}</span>
+                  ))}
+                </div>
               </div>
             ))
           }
@@ -227,9 +252,10 @@ const icons: Record<string, string> = {
               </div>
             </div>
             <div class="about__intro">
-              <p class="about__statement">I build software and the teams that run it.</p>
+              <p class="about__statement">I build large, complex software and the teams that run it.</p>
               <p class="about__sub">
-                Twenty-three years of it, from core banking to the platforms I run today.
+                Twenty-three years of it, from core banking to the platforms I run today, working
+                where the business decisions and the technology ones meet.
               </p>
             </div>
           </div>
@@ -728,11 +754,20 @@ const icons: Record<string, string> = {
     padding: 0.1rem 0.35rem;
     white-space: nowrap;
   }
-  .record-desc {
+  .record-facets {
     flex: 1 1 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.18rem;
+  }
+  .record-facet {
     font-size: clamp(0.98rem, 1.3vw, 1.08rem);
-    line-height: 1.5;
+    line-height: 1.45;
     color: var(--color-muted);
+  }
+  .record-facet--lead {
+    color: var(--color-ink);
+    font-weight: 500;
   }
 
   /* Writing */
