@@ -29,3 +29,5 @@ This repo is public. Nothing private goes in it: no vault content, no private st
 ## Build
 
 `npm install`, then `npm run dev` to work. `npm run check` and `npm run build` are the gate. The Node version is pinned in `.nvmrc`.
+
+**The lockfile must be generated on Linux.** Cloudflare builds on Linux with `npm ci`, which requires `package-lock.json` to contain Tailwind v4's Linux-only optional deps (`@tailwindcss/oxide-linux-x64` and `@emnapi`). macOS npm omits those from the lockfile, so a Mac-generated `package-lock.json` fails the Cloudflare build with `Missing: @emnapi/... from lock file`. When the lockfile needs regenerating, generate it on a Linux host (run `npm install` there) and commit that file. A lockfile regenerated on macOS will re-break the deploy.
