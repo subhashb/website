@@ -130,6 +130,7 @@ const icons: Record<string, string> = {
               ))
             }<span class="hero__cursor" data-hero-cursor aria-hidden="true"></span>
           </h1>
+          <p class="hero__niche">Keeping large systems correct when the machine writes the code.</p>
           <div class="hero__copy">
             <p class="hero__lead">
               Large, complex software meant to grow, now built AI-natively on deep architecture and
@@ -585,6 +586,17 @@ const icons: Record<string, string> = {
     transform: translateY(0.08em);
     background: var(--color-accent);
     animation: om-blink 1s step-end infinite;
+  }
+  .hero__niche {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(1.5rem, 3.2vw, 2.4rem);
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    color: var(--color-ink);
+    margin: clamp(1.1rem, 2.4vw, 1.6rem) 0 0;
+    max-width: 22ch;
+    text-wrap: balance;
   }
   .hero__copy {
     display: flex;
